@@ -198,6 +198,7 @@ nav {
           .fa-heart:hover {
             color: rgba(251, 38, 38, 0.5);
           }
+
           .fa-shopping-cart {
             font-size: 16px;
             color: #2eb7eb;
@@ -317,7 +318,7 @@ nav {
           }
         }
 
-        .item-description {
+        .item-nom {
           grid-area: b;
           display: flex;
           justify-content: space-between;
@@ -477,5 +478,31 @@ nav {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+.button-one {
+  background: rgb(1,1,1);
+  background: linear-gradient(90deg, rgba(1,1,1,1) 10%, rgba(193,24,24,1) 50%, rgba(9,6,6,1) 90%);
+}
+
+.btn {
+  margin: 5px;
+  font-family: 'Poppins';
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 6px;
+  background-size: 300% 300%;
+  color: white;
+  text-transform: uppercase;
+  border: 0;
+  padding: 12px 20px;
+  font-size: 12px;
+  animation: Gradient 10s ease infinite;
+  
+  &:hover {
+    background-size: 150% 150%;
   }
 }
