@@ -21,8 +21,6 @@ const Home = {
             searchKey: '',
             liked: [],
             cart: [],
-            filmeuh: [] = films,
-            
         }
     },
     computed: {
@@ -51,18 +49,6 @@ const Home = {
         }
     },
     methods: {
-        SetVu(filmVu) {
-            for (let i = 0; i < filmeuh.length; i++) {
-                if (filmeuh[i].id === filmVu.id) {
-                    if (filmeuh[i].etat == 'vu') {
-                        filmeuh.$set(etat, 'avoir');
-                    }
-                    else {
-                        filmeuh.$set(etat, 'vu');
-                    }
-                }
-            }
-        },
         setLikeCookie(){
             document.addEventListener('input', () => {
                 setTimeout(() => {
@@ -104,6 +90,7 @@ const Home = {
         this.getLikeCookie;
     },
 }
+
 
 const Settings = {
     template: '<h1>Settings</h1>',

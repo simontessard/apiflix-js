@@ -211,7 +211,7 @@
                       @click="setLikeCookie()"
                     />
                       <label v-bind:for="film.id">
-                        <i v-on:click="setVu(film)" class="fas fa-check-circle"></i>
+                        <i class="fas fa-times-circle"></i>
                       </label>
                   </div>
   
@@ -222,11 +222,7 @@
                   </div>
                 </div>
             </div>
-  
-              <div v-if="filteredList.length == []" class="no-result">
-                <h3>Désolé</h3>
-                <p>Aucun résultat trouvé</p>
-              </div>
+              
         </div>
   
       </div>
