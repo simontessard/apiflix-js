@@ -20,7 +20,9 @@ const Home = {
             films,
             searchKey: '',
             liked: [],
-            cart: []
+            cart: [],
+            filmeuh: [] = films,
+            
         }
     },
     computed: {
@@ -49,10 +51,15 @@ const Home = {
         }
     },
     methods: {
-        vu(filmVu) {
-            for (let i = 0; i < this.films.length; i++) {
-                if (this.films[i].id === filmVu.id) {
-                    filmVu.etat = "vu";
+        SetVu(filmVu) {
+            for (let i = 0; i < filmeuh.length; i++) {
+                if (filmeuh[i].id === filmVu.id) {
+                    if (filmeuh[i].etat == 'vu') {
+                        filmeuh.$set(etat, 'avoir');
+                    }
+                    else {
+                        filmeuh.$set(etat, 'vu');
+                    }
                 }
             }
         },

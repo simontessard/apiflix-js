@@ -67,22 +67,16 @@
       </span>
 
       <button class="btn button-gradient button-one">
-        <h3> Séries</h3>
+        <h3> Séries <i class="fas fa-check-circle"></i></h3>
       </button>
-
-      <i class="fas fa-check-circle"></i>
 
       <button class="btn button-gradient button-one">
-        <h3> Films</h3>
+        <h3> Films <i class="fas fa-check-circle"></i> </h3>
       </button>
-
-      <i class="fas fa-check-circle"></i>
 
       <button class="btn button-gradient button-one">
-        <h3> Animes</h3>
+        <h3> Animes <i class="fas fa-check-circle"></i></h3>
       </button>
-
-      <i class="fas fa-check-circle"></i>
 
       <!-- AVOIR -->
 
@@ -174,7 +168,6 @@
 
           </transition-group>
 
-
           <div class="grand-total">
             <div class="total">
               <h2>Total</h2>
@@ -188,6 +181,8 @@
 
       </div>
 
+      <!-- A VOIR -->
+
       <div class="a-voir-container">
 
         <div class="card-cart-container">
@@ -196,9 +191,9 @@
   
             <div v-for="film in filteredList" v-if="film.etat == 'vu'" class="card">
               
-              <div class="card-info">
-                <p>{{film.nom}}</p>
-              </div>
+                <div class="card-info">
+                  <p>{{film.nom}}</p>
+                </div>
   
                 <div class="card-text">
                   <span><i class="fas fa-clock"></i> {{film.duree}}min</span>
@@ -206,7 +201,7 @@
   
                 <div class="card-icons">
   
-                  <div v-on:click="vu" class="like-container">
+                  <div class="like-container">
                     <input 
                       type="checkbox"
                       name="checkbox-like"
@@ -216,7 +211,7 @@
                       @click="setLikeCookie()"
                     />
                       <label v-bind:for="film.id">
-                        <i class="fas fa-check-circle"></i>
+                        <i v-on:click="setVu(film)" class="fas fa-check-circle"></i>
                       </label>
                   </div>
   
@@ -226,14 +221,13 @@
                     </button>
                   </div>
                 </div>
-              
             </div>
   
-            <div v-if="filteredList.length == []" class="no-result">
+              <div v-if="filteredList.length == []" class="no-result">
                 <h3>Désolé</h3>
                 <p>Aucun résultat trouvé</p>
               </div>
-          </div>
+        </div>
   
       </div>
 
