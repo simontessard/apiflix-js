@@ -46,7 +46,7 @@ const Home = {
                 itemTotal = itemTotal + this.cart[item].quantity;
             }
             return itemTotal;
-        }
+        },
     },
     methods: {
         setLikeCookie(){
@@ -115,7 +115,6 @@ const router = new VueRouter({
         { path: '/shoppingcart', component: ShoppingCart, name: 'ShoppingCart'},
     ]
 })
-
 
 const vue = new Vue({
     router

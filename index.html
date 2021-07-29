@@ -12,38 +12,48 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
   <link href="./assets/style/style.css" rel="stylesheet" />
   <link href="./assets/style/main.scss" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
 </head>
 
 <body>
 
   <div id="app">
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarTogglerDemo01">
 
-    <nav>
-      <div class="nav-container">
+          <router-link style="text-decoration: none;" to="/">
+            <a class="navbar-brand" href="#">Apiflix</a>
+          </router-link>
 
-        <router-link style="text-decoration: none;" to="/">
-          <h5> Apiflix </h5>
-        </router-link>
-
-        <ul id="icons">
-          <li>
-            <router-link to="/settings">
-              <i class="fas fa-user"></i>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/wishlist">
-              <i class="fas fa-heart"></i>
-              <span id="nav-not"></span>
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/shoppingcart">
-              <i class="fas fa-shopping-cart"></i>
-            </router-link>
-          </li>
-        </ul>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item mx-3">
+              <router-link to="/settings">
+                <i class="fas fa-user"></i>
+              </router-link>
+            </li>
+            <li class="nav-item mx-3">
+              <router-link to="/wishlist">
+                <i class="fas fa-heart"></i>
+                <span id="nav-not"></span>
+              </router-link>
+            </li>
+            <li class="nav-item mx-3">
+              <router-link to="/shoppingcart">
+                <i class="fas fa-shopping-cart"></i>
+              </router-link>
+            </li>
+          </ul>
+          
+        </div>
       </div>
     </nav>
 
@@ -51,182 +61,187 @@
 
     </router-view>
 
-
   </div>
 
   <script type="text/x-template" id="home">
 
-    <div class="home-container">
+    <div class="container-fluid">
 
-      <h1> À voir </h1>
+      <!-- RECHERCHE -->
 
-      <input v-model="searchKey" type="search" id="search" placeholder="Rechercher.." autocomplete="off">
+      <div class="container"> 
 
-      <span v-if="searchKey && filteredList.length >= 1">
-        {{filteredList.length}} résultat<span v-if="filteredList.length >= 2">s</span>
-      </span>
+        <div class="row my-4"> <h2> À voir </h2> </div>
 
-      <button class="btn button-gradient button-one">
-        <h3> Séries <i class="fas fa-check-circle"></i></h3>
-      </button>
+        <div class="row my-2">
+          <div class="col-3 py-2">
 
-      <button class="btn button-gradient button-one">
-        <h3> Films <i class="fas fa-check-circle"></i> </h3>
-      </button>
-
-      <button class="btn button-gradient button-one">
-        <h3> Animes <i class="fas fa-check-circle"></i></h3>
-      </button>
-
-      <!-- AVOIR -->
-
-      <div class="card-cart-container">
-        
-        <div class="card-container">
-
-          <div v-for="film in filteredList" v-if="film.etat == 'avoir'" class="card">
+            <input class="form-control my-2" style="width: auto;" v-model="searchKey" type="search" id="search" placeholder="Rechercher" autocomplete="off">
             
-            <div class="card-info">
-              <p>{{film.nom}}</p>
+            <div class="btn-group btn-group-sm mb-3" role="group" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary">Séries </button>
+              <button type="button" class="btn btn-outline-primary">Films </button>
+              <button type="button" class="btn btn-outline-primary">Animes </button>
             </div>
 
-              <div class="card-text">
-                <span><i class="fas fa-clock"></i> {{film.duree}}min</span>
-              </div>
-
-              <div class="card-icons">
-
-                <div class="like-container">
-                  <input 
-                    type="checkbox"
-                    name="checkbox-like"
-                    v-bind:id="film.id"
-                    :value=film.id
-                    v-model="liked"
-                    @click="setLikeCookie()"
-                  />
-                    <label v-bind:for="film.id">
-                      <i class="fas fa-check-circle"></i>
-                    </label>
-                </div>
-
-                <div class="add-to-cart">
-                  <button v-on:click="addToCart(film)">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
-                </div>
-              </div>
-            
           </div>
 
-          <div v-if="filteredList.length == []" class="no-result">
-              <h3>Désolé</h3>
-              <p>Aucun résultat trouvé</p>
-            </div>
         </div>
+        
+        <span v-if="searchKey && filteredList.length >= 1">
+          {{filteredList.length}} résultat<span v-if="filteredList.length >= 2">s</span>
+        </span>
+
+
+        <div v-if="filteredList.length == []">
+          <h3>Désolé</h3>
+          <p>Aucun résultat trouvé</p>
+        </div>
+
+      </div>
+
+      <!-- FIN RECHERCHE -->
+
+      <div class="container-fluid d-flex justify-content-center">
+
+        <div class="row">
+
+          <div class="col-8">
+
+            <!-- AVOIR -->
+
+            <div class="container">
+
+              <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+          
+                <div v-for="film in filteredList" v-if="film.etat == 'avoir'">
+            
+                  <div class="col h-100">
+            
+                    <div class="card h-100 text-center bg-light">
+                          <div class="row p-3">
+                                <div class="col-6">
+                                    <img v-bind:src="film.img" class="img-fluid" style="height: 120px; width:120px" alt=".">
+                                </div>
+                                <div class="col-6 align-self-center">
+                                  <h5 class="card-title">{{film.nom}}</h5>
+                                  <p class="card-text"><span><i class="fas fa-clock"></i> {{film.duree}}min</span></p>
+                                </div>
+                          </div>
+                            
+                            <div class="card-body p-0">
+                              
+                              <p class="card-text m-2"><small class="text-muted">Last updated 3 mins ago</small></p>
+              
+                              <div class="card-footer like-container">
+            
+                                <div class="row">
+            
+                                  <div class="col border-end checkbox">
+                                    <input
+                                      type="checkbox"
+                                      name="checkbox-like"
+                                      v-bind:id="film.id"
+                                      :value=film.id
+                                      v-model="liked"
+                                      @click="setLikeCookie()"
+                                    />
+                                      <label v-bind:for="film.id">
+                                        <i class="fas fa-check-circle"></i>
+                                      </label>
+                                  </div>
+                  
+                                  <div class="col add-to-cart">
+                                    <button v-on:click="addToCart(film)">
+                                      <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                  </div>
+            
+                                </div>
+            
+                              </div> 
+                           </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+        <!-- FIN AVOIR -->
+
+        <div class="col-4">
 
         <!-- CART -->
 
-        <transition name="cart-anim">
+        <div class="container mt-4">
 
-        <div v-if="cart.length > 0" class="shopping-cart" id="shopping-cart">
+          <div class="row row-cols-1">
 
-          <h2> Panier </h2>
+            <div class="col col-md-auto">
 
-          <transition-group name="item-anim" tag="div" class="item-group">
+              <transition name="slide-fade">
 
-          <div v-for="film, id in cart" v-bind:key="film.id" class="item">
-
-              <div class="img-container">
-                <img v-bind:src='film.img' alt="">
-              </div>
-
-              <div class="item-nom">
-                <h4>{{ film.nom }}</h4>
-                <p>{{ film.duree }}min</p>
-              </div>
-
-              <div class="item-quantity">
-                <h6>Quantité : {{ film.quantity }}</h6>
-              
-
-              <div class="cart-icons">
-                <button v-on:click="cartPlusOne(film)">
-                  <i class="fa fa-plus"></i>
-                </button>
-                <button v-on:click="cartMinusOne(film, id)">
-                  <i class="fa fa-minus"></i>
-                </button>
-                <button @click="cartRemoveItem(id)">
-                  <i class="fa fa-trash"></i>
-                </button>
-              </div>
-
-            </div>
-
-            </div>
-
-          </transition-group>
-
-          <div class="grand-total">
-            <div class="total">
-              <h2>Total</h2>
-              <h2>{{cartTotalAmount}}min</h2>
-            </div>
-            <h6>Total articles : {{itemTotalAmount}}</h6>
-          </div>
-        </div>
-
-        </transition>
-
-      </div>
-
-      <!-- A VOIR -->
-
-      <div class="a-voir-container">
-
-        <div class="card-cart-container">
+                <div v-if="cart.length > 0" class="card text-center bg-secondary text-white p-2 border border-2 border-light" id="shopping-cart">
         
-          <div class="card-container">
-  
-            <div v-for="film in filteredList" v-if="film.etat == 'vu'" class="card">
-              
-                <div class="card-info">
-                  <p>{{film.nom}}</p>
-                </div>
-  
-                <div class="card-text">
-                  <span><i class="fas fa-clock"></i> {{film.duree}}min</span>
-                </div>
-  
-                <div class="card-icons">
-  
-                  <div class="like-container">
-                    <input 
-                      type="checkbox"
-                      name="checkbox-like"
-                      v-bind:id="film.id"
-                      :value=film.id
-                      v-model="liked"
-                      @click="setLikeCookie()"
-                    />
-                      <label v-bind:for="film.id">
-                        <i class="fas fa-times-circle"></i>
-                      </label>
+                  <h2> Panier </h2>
+        
+                  <transition-group name="bounce" tag="div">
+        
+                  <div v-for="film, id in cart" v-bind:key="film.id">
+        
+                      <img v-bind:src='film.img' class="img-fluid m-2" alt=""> 
+        
+                      <div>
+                        <p class="card-title">{{ film.nom }}</p>
+                        <p class="card-text">{{ film.duree }}min</p>
+                      </div>
+        
+                      <div>
+                        <p>Quantité : {{ film.quantity }}</p>
+        
+                      <div class="cart-icons">
+                        <button v-on:click="cartPlusOne(film)">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                        <button v-on:click="cartMinusOne(film, id)">
+                          <i class="fa fa-minus"></i>
+                        </button>
+                        <button @click="cartRemoveItem(id)">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </div>
+        
+                    </div>
+        
+                    </div>
+        
+                  </transition-group>
+        
+                  <div>
+                    <div> <h2>Total</h2> <h2>{{cartTotalAmount}}min</h2> </div>
+                    <h6>Total articles : {{itemTotalAmount}}</h6>
                   </div>
-  
-                  <div class="add-to-cart">
-                    <button v-on:click="addToCart(film)">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
-                  </div>
                 </div>
+        
+              </transition>
+
             </div>
-              
+          </div>
+          </div>
+          </div>
+          </div>
+
         </div>
-  
+
       </div>
 
+      </div>
+      
     </div>
 
   </script>
