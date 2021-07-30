@@ -24,6 +24,10 @@ body {
   cursor: pointer;
 }
 
+.fa-check-circle {
+  color:aquamarine;
+}
+
 a,
 a:visited {
   color: #333;

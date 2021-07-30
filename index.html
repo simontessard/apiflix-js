@@ -69,9 +69,7 @@
 
       <!-- RECHERCHE -->
 
-      <div class="container"> 
-
-        <div class="row my-4"> <h2> À voir </h2> </div>
+      <div class="container-fluid d-flex justify-content-center"> 
 
         <div class="row my-2">
           <div class="col-3 py-2">
@@ -104,7 +102,7 @@
 
       <div class="container-fluid d-flex justify-content-center">
 
-        <div class="row">
+        <div class="row w-100">
 
           <div class="col-8">
 
@@ -116,7 +114,7 @@
           
                 <div v-for="film in filteredList" v-if="film.etat == 'avoir'">
             
-                  <div class="col h-100">
+                  <div class="col-lg">
             
                     <div class="card h-100 text-center bg-light">
                           <div class="row p-3">
@@ -124,8 +122,8 @@
                                     <img v-bind:src="film.img" class="img-fluid" style="height: 120px; width:120px" alt=".">
                                 </div>
                                 <div class="col-6 align-self-center">
-                                  <h5 class="card-title">{{film.nom}}</h5>
-                                  <p class="card-text"><span><i class="fas fa-clock"></i> {{film.duree}}min</span></p>
+                                  <h5 class="card-title fs-6 fw-bold">{{film.nom}}</h5>
+                                  <small><p class="card-text"><span><i class="fas fa-clock"></i> {{film.duree}}min</span></p></small>
                                 </div>
                           </div>
                             
@@ -147,13 +145,13 @@
                                       @click="setLikeCookie()"
                                     />
                                       <label v-bind:for="film.id">
-                                        <i class="fas fa-check-circle"></i>
+                                        <i style="color: green;" class="fas fa-check-circle"></i>
                                       </label>
                                   </div>
                   
                                   <div class="col add-to-cart">
                                     <button v-on:click="addToCart(film)">
-                                      <i class="fas fa-trash-alt"></i>
+                                      <i style="color: red;" class="fas fa-trash-alt"></i>
                                     </button>
                                   </div>
             
